@@ -1,0 +1,19 @@
+name = "msc-mailing-list"
+type = "javascript"
+account_id = "d7f589f22d181206f3d43bc676953b06"
+workers_dev = true
+compatibility_date = "2022-03-03"
+routes = ["list.noha.dev/*"]
+
+[build]
+command = "npm run build"
+[build.upload]
+format = "modules"
+main = "worker.mjs"
+
+[durable_objects]
+bindings = []
+
+# [secrets]
+# MAILGUN_TOKEN
+# JWT_SECRET
