@@ -63,10 +63,11 @@ router.get("/manage/:token", async (req) => {
 <form method="POST">
 ${toggles
   .map(
-    (l) => `<label for="${l.addr}">${l.name} (${l.addr})</label>
+    (l) => `
   <input type="checkbox" id="${l.addr}" name="${l.addr}" ${
       l.toggle ? "checked" : ""
-    }>`
+    }>
+  <label for="${l.addr}">${l.name} (${l.addr})</label>`
   )
   .join("<br>")}<br>
   <input type="submit" value="提交">
