@@ -15,7 +15,9 @@ router.get("/", (req) => {
 <head></head>
 <body>
 <h1>微软俱乐部邮件订阅系统</h1>
-<p>输入邮件地址提交后，请按照邮件提示操作。邮件发件人为 ${noreplyAddr}</p>
+<p>输入邮件地址提交后，请按照邮件提示操作。邮件发件人为 ${noreplyAddr
+      .replace("<", "&lt;")
+      .replace(">", "&gt;")}</p>
 <form method="POST">
   <label for="email">邮箱:</label>
   <input type="text" id="email" name="email">
