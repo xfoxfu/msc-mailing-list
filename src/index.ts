@@ -33,7 +33,9 @@ router.post("/", async (req) => {
     `<!DOCTYPE html>
 <head></head>
 <body>
-<p>请按照邮件提示操作。邮件发件人为 ${noreplyAddr}</p>
+<p>请按照邮件提示操作。邮件发件人为 ${noreplyAddr
+      .replace("<", "&lt;")
+      .replace(">", "&gt;")}</p>
 </body>`,
     { headers: { "Content-Type": "text/html;charset=utf8" } }
   );
@@ -61,14 +63,15 @@ router.get("/manage/:token", async (req) => {
 <form method="POST">
 ${toggles
   .map(
-    (l) => `<label for="${l.addr}">${l.name}</label>
+    (l) => `<label for="${l.addr}">${l.name} (${l.addr})</label>
   <input type="checkbox" id="${l.addr}" name="${l.addr}" ${
       l.toggle ? "checked" : ""
     }>`
   )
   .join("<br>")}<br>
   <input type="submit" value="提交">
-</form> 
+</form>
+<p>若需要发布活动，可以直接在日历中邀请对应的邮件地址，所有关注该邮件地址的人将收到提醒。</p>
 </body>`,
     { headers: { "Content-Type": "text/html;charset=utf8" } }
   );
